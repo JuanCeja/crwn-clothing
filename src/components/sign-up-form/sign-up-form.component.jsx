@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-let defaulUserInputs = {
+let defaultFormFields = {
   displayName: '',
   email: '',
   password: '',
@@ -10,13 +10,14 @@ let defaulUserInputs = {
 
 const SignUpForm = () => {
 
+  const [formFields, setFormFields] = useState(defaultFormFields);
 
   return (
     <div>
       <h1>Sign Up Form</h1>
       <form>
         <label>Display Name</label>
-        <input type="text" required />
+        <input type="text" required name='displayName'/>
         
         <label>Email</label>
         <input type="email" required/>
