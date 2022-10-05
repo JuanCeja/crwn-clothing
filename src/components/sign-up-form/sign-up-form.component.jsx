@@ -10,13 +10,19 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
+
+  // we destructor off these values so we can use them later in our code
   const { displayName, email, password, confirmPassword } = formFields;
 
   console.log(formFields)
 
+  // this function will take our input whenever the text changes in our input fields
   const handleChange = (event) => {
+
+    // were going to utilize this name to tell our set state which of the fields to update
     const { name, value } = event.target;
 
+    // we spread all of the fields and then were only going to update the appropriate field by using these square brackets inside of our object notation.
     setFormFields({...formFields, [name]: value})
   };
 
@@ -25,6 +31,9 @@ const SignUpForm = () => {
       <h1>Sign up with your email and password</h1>
       <form onSubmit={() => {}}>
         <label>Display Name</label>
+
+        {/* on our input we want to name them the same as the name of the actual attribute that were trying to update */}
+        {/* we also set our value to our variable so changes are circular. like this the value from the state is the value thats shown in the input */}
         <input
           type="text"
           required
@@ -34,6 +43,8 @@ const SignUpForm = () => {
         />
 
         <label>Email</label>
+        {/* on our input we want to name them the same as the name of the actual attribute that were trying to update */}
+        {/* we also set our value to our variable so changes are circular. like this the value from the state is the value thats shown in the input */}
         <input
           type="email"
           required
