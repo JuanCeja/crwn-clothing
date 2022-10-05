@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
+import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -16,6 +18,17 @@ const SignUpForm = () => {
 
   console.log(formFields)
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if(password !== confirmPassword) {
+      alert("passwords do not match");
+      return;
+    }
+
+    
+  }
+  
   // this function will take our input whenever the text changes in our input fields
   const handleChange = (event) => {
 
@@ -26,10 +39,11 @@ const SignUpForm = () => {
     setFormFields({...formFields, [name]: value})
   };
 
+
   return (
     <div>
       <h1>Sign up with your email and password</h1>
-      <form onSubmit={() => {}}>
+      <form onSubmit={handleSubmit}>
         <label>Display Name</label>
 
         {/* on our input we want to name them the same as the name of the actual attribute that were trying to update */}
