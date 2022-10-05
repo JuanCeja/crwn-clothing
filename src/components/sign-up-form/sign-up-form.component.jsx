@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
+import FormInput from "../form-input/form-input.component";
+
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
 
 const defaultFormFields = {
@@ -59,11 +61,11 @@ const SignUpForm = () => {
     <div>
       <h1>Sign up with your email and password</h1>
       <form onSubmit={handleSubmit}>
-        <label>Display Name</label>
 
         {/* on our input we want to name them the same as the name of the actual attribute that were trying to update */}
         {/* we also set our value to our variable so changes are circular. like this the value from the state is the value thats shown in the input */}
-        <input
+        <FormInput
+          label = "Display Name"
           type="text"
           required
           onChange={handleChange}
@@ -71,10 +73,10 @@ const SignUpForm = () => {
           value={displayName}
         />
 
-        <label>Email</label>
         {/* on our input we want to name them the same as the name of the actual attribute that were trying to update */}
         {/* we also set our value to our variable so changes are circular. like this the value from the state is the value thats shown in the input */}
-        <input
+        <FormInput
+          label="Email"
           type="email"
           required
           onChange={handleChange}
@@ -82,8 +84,8 @@ const SignUpForm = () => {
           value={email}
         />
 
-        <label>Password</label>
-        <input
+        <FormInput
+          label="Password"
           type="password"
           required
           onChange={handleChange}
@@ -91,8 +93,8 @@ const SignUpForm = () => {
           value={password}
         />
 
-        <label>Confirm Password</label>
-        <input
+        <FormInput
+          label="Confirm Password"
           type="password"
           required
           onChange={handleChange}
