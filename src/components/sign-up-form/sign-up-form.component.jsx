@@ -3,6 +3,8 @@ import { useState } from "react";
 
 import FormInput from "../form-input/form-input.component";
 
+import './sign-up-form.styles.scss';
+
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
 
 const defaultFormFields = {
@@ -58,8 +60,9 @@ const SignUpForm = () => {
 
 
   return (
-    <div>
-      <h1>Sign up with your email and password</h1>
+    <div className="sign-up-container">
+      <h2>Don't have an account?</h2>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
 
         {/* on our input we want to name them the same as the name of the actual attribute that were trying to update */}
