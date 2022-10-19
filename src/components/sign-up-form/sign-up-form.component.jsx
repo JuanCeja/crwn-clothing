@@ -1,12 +1,15 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
-import './sign-up-form.styles.scss';
 
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+
+import { UserContext } from "../../contexts/user.context";
+
+import './sign-up-form.styles.scss';
 
 const defaultFormFields = {
   displayName: "",
@@ -20,6 +23,8 @@ const SignUpForm = () => {
 
   // we destructor off these values so we can use them later in our code
   const { displayName, email, password, confirmPassword } = formFields;
+
+  console.log('hit')
 
   console.log(formFields)
 
