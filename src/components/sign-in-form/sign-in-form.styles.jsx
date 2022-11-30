@@ -1,3 +1,6 @@
+import styled from "styled-components";
+
+export const SignUpContainer = styled.div`
 .sign-up-container {
     display: flex;
     flex-direction: column;
@@ -6,9 +9,10 @@
     h2 {
         margin: 10px 0;
     }
-
-    .buttons-container {
+}
+`;
+export const ButtonsContainer = styled.div`
         display: flex;
         justify-content: space-between;
-    }
-}
+        gap: 15px;
+`;
