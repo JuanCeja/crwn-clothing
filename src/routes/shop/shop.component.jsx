@@ -10,8 +10,8 @@ const Shop = () => {
 
   return (
     <Routes>
-      <Route index element={ <CategoriesPreview /> } />
-      <Route path=":category" element={ <Category /> } />
+      <Route index element={<CategoriesPreview />} />
+      <Route path=":category" element={<Category />} />
     </Routes>
   );
 };
