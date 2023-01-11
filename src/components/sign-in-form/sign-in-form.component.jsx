@@ -1,15 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
 
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
-import {
-  signInWithGooglePopup,
-  signInAuthUserWithEmailAndPassword,
-} from "../../utils/firebase/firebase.utils";
-
 import { SignUpContainer, ButtonsContainer } from "./sign-in-form.styles.jsx";
+import { googleSignInStart, emailSignInStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
   email: "",
@@ -17,9 +14,8 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
-
-  // we destructor off these values so we can use them later in our code
   const { email, password } = formFields;
 
   const resetFormFields = () => {
@@ -27,20 +23,16 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
+    dispatch(googleSignInStart());
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
-      // switch finds the error code that matches and send out the appropriate alert error message. we break after the alert so switch doesn't keep going to look for another match.
       switch (error.code) {
         case 'auth/wrong-password':
           alert('incorrect password for email');
