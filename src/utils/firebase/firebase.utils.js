@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 
 import {
   getAuth,
-  signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -12,12 +11,8 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs, DocumentSnapshot } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from "firebase/firestore";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAyhtQMvFbtX2Iw81OUf2S07S7uRYXiEc8",
   authDomain: "crwn-clothing-db-7db69.firebaseapp.com",
@@ -27,10 +22,8 @@ const firebaseConfig = {
   appId: "1:923490631951:web:ba8c467478bb1e99e87e7a",
 };
 
-// Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-// google setup
 const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
@@ -107,3 +100,16 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    )
+  })
+}
