@@ -20,7 +20,6 @@ export const PaymentForm = () => {
 
     const paymentHandler = async (e) => {
         e.preventDefault();
-
         if (!stripe || !elements) {
             return;
         }
